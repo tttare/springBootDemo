@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="app">
+		v-model.lazy还是双向绑定,不过vue实例的数据不会随着输入立刻改变, <br />
+		<input type="text" v-model.lazy="message">
+		<p>{{message}}</p><br />
+		v-model.number,input输入的数字是string类型,加上number能让数字是number类型<br />
+		<input type="text" v-model.number="message2">
+		<p>{{typeof message2}}</p>
+		v-model.trim,去掉输入框首尾的空格<br />
+		<input type="text" v-model.trim="message3">
+		<p>{{message3}}</p>
+	</div>
+	
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+	<script>
+		
+		new Vue({
+			el:'#app',
+			data:{
+				message:'',
+				message2:121,
+				message3:''
+			}
+		})
+		
+	</script>
+</body>
+</html>

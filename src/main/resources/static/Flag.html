@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" onclick="printLog()" value="按键一"/>
+		<input type="button" onclick="printLog()" value="按键二"/>
+	</body>
+	<script>
+		var flag=true;
+		
+		function printLog(){
+			if(!flag){
+				return;
+			}
+			flag=false;
+			console.log("start");
+			setTimeout(function(){
+				console.log("end");
+			},3000)
+			flag=true;
+		}
+		
+	</script>
+</html>

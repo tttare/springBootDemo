@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="app">
+		<h1>值|过滤器名(不带括号) 过滤器的基本用法</h1>
+		<h1>当前时间:{{nyr|tttareTime}}</h1>
+		<h1>闹铃时间:{{callTime|tttareTime}}</h1>
+		<div v-html="music"></div>
+	</div>
+	
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+	<script>
+		
+		var parseDate=function(value){
+			if (value<10){
+				return '0'+value;
+			}else{
+				return value;	
+			}
+		}
+
+		var app=new Vue({
+			el:'#app',    
+			data:{
+				nyr:new Date(),
+				callTime:new Date(new Date().valueOf()+60000),//new Date().getTime()与Date.now()返回时毫秒值的字符串,new Date().valueOf返回的是毫秒值的数值类型
+				music:''
+			},
+			filters:{
+				tttareTime:function(value){
+					var time=new Date(value);
+					var hour=parseDate(time.getHours());
+					var minute=parseDate(time.getMinutes());
+					var millisecond=parseDate(time.getSeconds());
+					var day=parseDate(time.getDate());
+					var month=parseDate(time.getMonth()+1);
+					var year=time.getFullYear();
+					var formDate=year+'/'+month+'/'+day+' '+hour+':'+minute+':'+millisecond;
+						return formDate;
+					
+				}
+			},
+			mounted:function(){
+				var _this=this;
+				this.timer=setInterval(function(){
+					_this.nyr=new Date();
+				},1000);
+			},
+			beforeDestroy:function(){
+				if(this.timer){
+					clearInterval(timer);					
+				}
+			}
+		})
+		
+		
+	</script>
+</body>
+</html>

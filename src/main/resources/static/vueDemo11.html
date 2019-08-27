@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<link href="css/test.css" />
+		<div id="app" v-cloak>
+			
+			<ul v-for="(book,index) in books">
+				<li>{{index+1}}-{{book.name}}</li>
+			</ul>
+			
+			vue的v-for甚至能遍历对象,虽然好像也没什么用<br />
+			<template v-for="value in user">
+				
+				<span>{{value}}</span>
+			</template>
+		
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+		
+		<script>
+	
+			var app=new Vue({
+				el:'#app',    
+				data:{
+					books:[
+						{name:'vue实战'},
+						{name:'spring实战'},
+						{name:'java实战'}
+					],
+					user:{"name":"tttare","age":18}
+				}
+			})
+			
+		</script>
+	</body>
+</html>

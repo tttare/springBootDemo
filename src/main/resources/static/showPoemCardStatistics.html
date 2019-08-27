@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<!-- saved from url=(0106)http://ued.t.huijiaoyun.com/tianyu_edu_dev/teacherAssistant/arithmetic-training/mental_count_20181205.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://ued.t.huijiaoyun.com/tianyu_edu_dev/teacherAssistant/arithmetic-training/css/mental.css">
+</head>
+
+<body>
+    <div class="testdata_main">
+        <div class="title">
+            查看评测数据 <i class="tsclose"></i>
+        </div>
+        <div style="padding: 0 18px;background: #fff">
+            <ul class="title_details clearfix">
+                <li>
+                    <div>
+                        <div class="left"></div>
+                        <div class="right">
+                            <p>完成人数</p>
+                            <p><span>3</span>/<span>10</span></p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="left"></div>
+                        <div class="right">
+                            <p>整体评价</p>
+                            <p>B</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="left"></div>
+                        <div class="right">
+                            <p>班级平均耗时</p>
+                            <p>03:20</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="left"></div>
+                        <div class="right">
+                            <p>表现最好</p>
+                            <p>张三</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="ts_switch_box">
+                <span class="on">班级情况</span>
+                <span>个人情况</span>
+            </div>
+            <div class="ts_box_0" style="position: relative;">
+                <div class="chooseclass fchooseclass">
+                    <div class="selectMod" onchange="getInfoByPoemName()">
+                        <p><span>全部诗词</span><i></i></p>
+                        <ul style="display: none;">
+                            <li>全部诗词</li>
+                            <li>春晓</li>
+                            <li>春晓2</li>
+                        </ul>
+                    </div>
+                </div>
+                <i class="chart_tips">?</i>
+                <div class="chart_tips_main">
+                    <div class="clearfix chart_tips_title"><i class="chart_tips_icon">?</i> <span class="chart_tips_close" title="关闭"></span></div>
+                    <div class="chart_tips_ct clearfix">
+                        <ul>
+                            <li>未开始</li>
+                            <li>未背完</li>
+                            <li>不认真</li>
+                            <li>一般</li>
+                            <li>完美</li>
+                        </ul>
+                        <ul>
+                            <li>学生还未开始背诵诗词</li>
+                            <li>学生还未背诵完所有诗词</li>
+                            <li>综合评价为C</li>
+                            <li>综合评价为B</li>
+                            <li>综合评价为A</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="charts-unit" style="width: 100%; height: 520px; -webkit-tap-highlight-color: transparent; user-select: none; background: transparent;" _echarts_instance_="ec_1544411168586"><div style="position: relative; overflow: hidden; width: 1164px; height: 520px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas width="1164" height="520" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 1164px; height: 520px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+            </div>
+            <div class="ts_box_1 dis_none" style="margin-top: 20px">
+                <div>
+                    <div class="ts_table_title">
+                        <table class="" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td width="20%">姓名</td>
+                                    <td>练习耗时
+                                    </td><td width="20%">提交时间</td>
+                                    <td width="20%">总评价</td>
+                                    <td width="20%">录音</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ts_table_main">
+                        <table class="" cellpadding="0" cellspacing="0">
+                            <tbody>
+
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound" onclick="test()"><a style="display: none;"></a></i></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound"></i></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound"></i></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound"></i></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound"></i></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound"></i></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound"></i></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">韦頔</td>
+                                    <td>18：00
+                                    </td><td width="20%">2018-8-25 18：00</td>
+                                    <td width="20%">A</td>
+                                    <td width="20%"><i class="icon_data_sound"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="http://ued.t.huijiaoyun.com/tianyu_edu_dev/teacherAssistant/arithmetic-training/js/lib/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="http://ued.t.huijiaoyun.com/tianyu_edu_dev/teacherAssistant/arithmetic-training/js/lib/echarts.min.js"></script>
+<script>
+    //下拉列表
+    clickOption()
+
+	var url='';//返回页面回调的action
+    function clickOption() {
+        var selectModBox = document.querySelector('.selectMod');
+        var selectModp = document.querySelector('.selectMod p');
+        var selectModspan = selectModp.querySelector('span');
+        var selectModul = selectModBox.querySelector('.selectMod ul');
+        console.log(selectModul)
+        var selectModli = selectModul.querySelectorAll('.selectMod li');
+        selectModp.onclick = function (e) {
+            window.event ? window.event.cancelBubble = true : e.stopPropagation();
+            if (selectModul.style.display == "block") {
+                selectModul.style.display = "none"
+            } else {
+                selectModul.style.display = "block";
+            }
+        }
+        for (var i = 0; i < selectModli.length; i++) {
+            selectModli[i].onclick = function () {
+                
+                if(selectModspan.innerHTML!=this.innerHTML){
+                	selectModspan.innerHTML = this.innerHTML;
+                	alert(this.innerHTML);
+                	//url:D:\upload\以父之名.amr
+                	//js的io流
+                	 var reader = new FileReader();
+                	 reader.readAsDataURL("D:\upload\以父之名.amr");
+                	 reader.onload=function(){
+                	 	alert(reader.result)
+                	 }
+                }else{
+                	alert("on Change Found");
+                }
+                
+                
+                selectModul.style.display = "none";
+            }
+        }
+        document.onclick = function (ev) {
+            selectModul.style.display = "none";
+        }
+    }
+    // 图表
+    var charts_1 = echarts.init(document.querySelector('.charts-unit'));
+    var option = {
+        grid: {
+            show: true,
+            left: 30,
+            right: 0,
+            bottom: 20
+        },
+        xAxis: {
+            position: 'bottom',
+            axisTick: false,
+            axisLabel: {
+                textStyle: {
+                    fontSize: 12,
+                    color: '#7c88aa',
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#d2d2da'
+                }
+            },
+            data: ["未开始", "未背完", "D", "C", "B", 'A']
+        },
+        yAxis: {
+            name: '人数',
+            splitNumber: 10,
+            // interval: 5,
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    fontSize: 16,
+                    color: '#7c88aa'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#d2d2da'
+                }
+            },
+            nameTextStyle: {
+                fontSize: 16,
+                color: '#7c88aa',
+            },
+            splitLine: false,
+            splitArea: {
+                show: true,
+                areaStyle: {
+                    color: ['#fff', '#eee']
+                }
+            }
+        },
+        series: [{
+            type: 'bar',
+            barWidth: '25%',
+            itemStyle: {
+                normal: {
+                    color: '#6bc5ff'
+                }
+            },
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top',
+                    textStyle: {
+                        fontSize: 16
+                    }
+                }
+            },
+            data: [{
+                value: 5,
+                itemStyle: {
+                    // normal: {
+                    //     color: '#6bc5ff'
+                    // }
+                }
+            }, {
+                value: 10,
+                itemStyle: {
+                    normal: {}
+                }
+            },
+            {
+                value: 10,
+                itemStyle: {
+                    normal: {}
+                }
+            }, {
+                value: 15,
+                itemStyle: {
+                    normal: {}
+                }
+            }, {
+                value: 55,
+                itemStyle: {
+                    normal: {color:"#ffd324"},
+                }
+            }, {
+                value: 20,
+                itemStyle: {
+                    normal: {}
+                }
+            }
+            ],
+            markPoint: {
+                data: []
+            },
+
+        }]
+    };
+
+    charts_1.setOption(option);
+    // 切换
+    $('.ts_switch_box span').click(function () {
+        var index = $(this).index()
+        $(this).addClass('on').siblings().removeClass('on')
+        if (index) {
+            $('.fchooseclass').hide()
+            $('.ts_box_0').hide()
+            $('.ts_box_1').show()
+        } else {
+            $('.ts_box_1').hide()
+            $('.ts_box_0').show()
+            $('.fchooseclass').show()
+
+        }
+    })
+    $('.chart_tips').click(function () {
+        $('.chart_tips_main').show()
+    })
+    $('.chart_tips_close').click(function () {
+        $('.chart_tips_main').hide()
+    })
+    
+    
+    
+    function test(){
+    	alert("test")
+    }
+    
+    
+    function getInfoByPoemName(){
+    	alert("chager")
+    }
+</script>
+
+</body></html>

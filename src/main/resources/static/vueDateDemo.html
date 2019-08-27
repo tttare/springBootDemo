@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="app">
+		<input v-model="date"  type="text"/>
+		{{date}}
+	</div>
+	
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+	<script>
+
+		var app=new Vue({
+			el:'#app',    
+			data:{
+				date: new Date()
+			},
+			created:function(){
+				var _this=this;
+				this.timer=setInterval(function(){
+					_this.date=new Date();
+				},1000);
+			},
+			mounted:function(){
+				console.log(this.$el)//dom元素,即<div><input .../></div>这中dom元素
+			},
+			beforeDestroy:function(){
+				if(this.timer){
+					clearInterval(this.timer);//清除定时器实例
+				}
+			}
+		})
+		
+		
+		
+	</script>
+</body>
+</html>
