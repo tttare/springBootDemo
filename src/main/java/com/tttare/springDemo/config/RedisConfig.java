@@ -22,7 +22,9 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -75,12 +77,11 @@ public class RedisConfig extends CachingConfigurerSupport {
     	return cacheManager;
     }  
   
-    @Bean(name="redisTemplate")
+    /*@Bean(name="redisTemplate")
     public RedisTemplate<String, String> getRedisTemplate() {  
     	RedisTemplate<String, String> template = new RedisTemplate<>();
 
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
-
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
@@ -97,7 +98,31 @@ public class RedisConfig extends CachingConfigurerSupport {
         //value hashmap序列化
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         return template;  
-    }  
+    }*/
+
+    /**
+     * 获取缓存操作助手对象
+     *
+     * @return
+     */
+    @Bean(name="redisTemplate")
+    public RedisTemplate<String, String> redisTemplate(LettuceConnectionFactory factory) {
+        //创建Redis缓存操作助手RedisTemplate对象
+        StringRedisTemplate template = new StringRedisTemplate();
+        template.setConnectionFactory(factory);
+        //以下代码为将RedisTemplate的Value序列化方式由JdkSerializationRedisSerializer更换为Jackson2JsonRedisSerializer
+        //此种序列化方式结果清晰、容易阅读、存储字节少、速度快，所以推荐更换
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+        return template;//StringRedisTemplate是RedisTempLate<String, String>的子类
+    }
+
+
 }
   
 	
