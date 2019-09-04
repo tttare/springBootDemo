@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -13,18 +14,20 @@ import java.util.Date;
 public class User {
 
     private String userId;
-    private String userName;
-    private String passWord;
-    private Date createDate;
-    private Date updateDate;
-    /***用户类型:
-            0 一般用户：无管理后台的权限，无上传下载权限；
-            1 vip用户：无管理后台权限，有上传下载权限；
-            2 管理员：有管理后台权限及vip用户权限，有封禁权限，无资源的删除权限；
-            3 超级管理员，拥有项目已知的所有权限；*/
-    private Integer type;
-    //是否被封禁： 0或null为否，1位已经封禁
-    private Integer isBan;
-
-
+    private String userName; //登录用户名
+    private String nickName;//名称（昵称或者真实姓名，根据实际情况定义）
+    private String password;
+    private String salt;//加密密码的盐
+    private int state;//用户状态,0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户 , 1:正常状态,2：用户被锁定.
+    private List<SysRole> roleList;// 一个用户具有多个角色
+    private Date createDate;//创建时间
+    private Date expiredDate;//过期日期
+    private String email;//邮箱
+    /**
+     * 密码盐. 重新对盐重新进行了定义，用户名+salt，这样就不容易被破解，可以采用多种方式定义加盐
+     * @return
+     */
+    public String getCredentialsSalt(){
+        return this.userName+this.salt;
+    }
 }

@@ -1,5 +1,6 @@
 package com.tttare.springDemo.userCenter.service.impl;
 
+
 import com.tttare.springDemo.userCenter.dao.UserMapper;
 import com.tttare.springDemo.userCenter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllUser(){
         return userMapper.listAllUser();
+    }
+
+    @Override
+    public User findByUserName(String userName) {
+        return userMapper.findByUserName(userName);
     }
 }

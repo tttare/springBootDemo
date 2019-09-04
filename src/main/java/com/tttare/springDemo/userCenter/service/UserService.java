@@ -8,4 +8,6 @@ import java.util.List;
 public interface UserService {
 
     List<User> findAllUser();
+
+    User findByUserName(String userName);
 }

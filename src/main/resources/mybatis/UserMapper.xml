@@ -3,23 +3,28 @@
 <mapper namespace="com.tttare.springDemo.userCenter.dao.UserMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="User" id="userMap">
+    <!--<resultMap type="User" id="userMap">
 
-        <id column="id" property="userId" jdbcType="VARCHAR" />
+        <id column="user_id" property="userId" jdbcType="VARCHAR" />
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="salt" property="salt" jdbcType="VARCHAR" />
         <result column="create_date" property="createDate" />
-        <result column="update_date" property="updateDate" />
-        <result column="type" property="type" jdbcType="INTEGER" />
-        <result column="is_ban" property="isBan" jdbcType="INTEGER" />
-    </resultMap>
+        <result column="expired_date" property="expiredDate" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+    </resultMap>-->
 
 
 
-    <select id="listAllUser"  resultMap="userMap">
-        select id,user_name,create_date,update_date,type,is_ban from tb_user
+    <select id="listAllUser"  resultType="User">
+        select * from sys_user
     </select>
 
+    <select id="findByUserName"  resultType="User"  parameterType="string">
+        select * from sys_user where username=#{userName}
+    </select>
 
 
 </mapper>
