@@ -1,18 +1,10 @@
 package com.tttare.springDemo.common.template;
 
-import freemarker.ext.beans.BeansWrapper;
-import freemarker.ext.beans.BeansWrapperBuilder;
-import freemarker.template.TemplateHashModel;
-import freemarker.template.TemplateModelException;
-import freemarker.template.Version;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class FreemarkerStaticModels extends HashMap<String, Object> {
-    private static Logger logger = LoggerFactory.getLogger(FreemarkerStaticModels.class);
+    /*private static Logger logger = LoggerFactory.getLogger(FreemarkerStaticModels.class);
 
     public FreemarkerStaticModels(Map<String, String> classMap) {
         for (String key : classMap.keySet()) {
@@ -31,5 +23,5 @@ public class FreemarkerStaticModels extends HashMap<String, Object> {
             logger.error(e.toString());
         }
         return null;
-    }
+    }*/
 }

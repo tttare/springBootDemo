@@ -1,28 +1,15 @@
 package com.tttare.springDemo.config;
 
-import freemarker.template.TemplateException;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
-import com.tttare.springDemo.common.template.FreemarkerStaticModels;
-import com.google.common.collect.Maps;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Properties;
 /**
  * @author verywell
  * @date 2018/5/31.
  * 设置FreeMarker配置信息
  */
-@Configuration
+//@Configuration
 public class FreeMarkerConfig{
 
 
-  @Bean
+ /* @Bean
   public ViewResolver viewResolverFtl() {
     FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
     resolver.setCache(false);
@@ -76,6 +63,6 @@ public class FreeMarkerConfig{
     settings.put("template_exception_handler", "ignore");
     result.setFreemarkerSettings(settings);
     return result;
-  }
+  }*/
 
 }

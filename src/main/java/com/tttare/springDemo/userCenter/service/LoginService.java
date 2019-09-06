@@ -1,7 +1,9 @@
 package com.tttare.springDemo.userCenter.service;
 
+import com.tttare.springDemo.common.model.ResponseParam;
 import com.tttare.springDemo.model.LoginResult;
 import org.apache.shiro.session.Session;
+import java.util.Map;
 
 /**
  * ClassName: LoginService <br/>
@@ -20,4 +22,6 @@ public interface LoginService {
     String getCurrentUserName();
 
     Session getSession();
+
+    ResponseParam confirmEmail(Map<String,String> params);
 }

@@ -22,6 +22,7 @@ public class User {
     private List<SysRole> roleList;// 一个用户具有多个角色
     private Date createDate;//创建时间
     private Date expiredDate;//过期日期
+    private Date lastLoginDate;//上次登录时间
     private String email;//邮箱
     /**
      * 密码盐. 重新对盐重新进行了定义，用户名+salt，这样就不容易被破解，可以采用多种方式定义加盐
