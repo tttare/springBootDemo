@@ -1,18 +1,15 @@
 package com.tttare.springDemo.userCenter.contorller;
 
-import com.alibaba.fastjson.JSON;
+
 import com.alibaba.fastjson.JSONObject;
 import com.tttare.springDemo.common.cache.IRedis;
 import com.tttare.springDemo.common.utils.FileViewUtil;
-import com.tttare.springDemo.common.utils.HttpUtil;
 import com.tttare.springDemo.model.FileObject;
 import com.tttare.springDemo.model.User;
 import com.tttare.springDemo.userCenter.service.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +35,7 @@ public class UserController {
 
     @RequestMapping("/index")
     public String index(){
-        return "HelloWorld!";
+        return "/index";
     }
 
     @RequestMapping("/list")

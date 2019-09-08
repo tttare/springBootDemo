@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -37,6 +38,11 @@ public class CommonUtil {
         }
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(date);
+    }
+
+    // 为当前date 加或减  时H 天 D  月M  年Y
+    public Date addOrSubDate(Date currentDate,char target,int num){
+        return null;
     }
 
     public  static void main(String[] args){

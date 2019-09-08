@@ -91,7 +91,7 @@
                         <input type="text" class="form-control" name="email" placeholder="电子邮箱">
                     </div>
                     <label class="control-label">（格式：xxx@xxx.com）</label>
-                    <button id="comfirmEmail" class="btn btn-primary">验 证</button>
+                    <a id="comfirmEmail" style="cursor: pointer">点 击 验 证</a>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-1 control-label"><span style="color: red;font-weight: bold">＊</span>邮箱验证</label>
@@ -139,7 +139,13 @@
                     data : JSON.stringify({'email':email}),
                     //请求成功
                     success : function(result) {
-                        console.log(result);
+                        if(result.code=='000000'){
+                            //重定向到登录页面
+
+                            window.location.href="/user/login?userName="+$('input[name="userName"]').val().trim();
+                        }else{
+                            alert(result.desc);
+                        }
                     },
                     //请求失败，包含具体的错误信息
                     error : function(e){

@@ -27,22 +27,21 @@
     </select>
 
     <select id="countByCondition"  resultType="int"  parameterType="map">
-        select count(*) from sys_user where
-        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+        select count(*) from sys_user where 1=1
             <if test="email != null">
-                email=#{email}
+                and email=#{email}
             </if>
             <if test="userName != null">
                 and username=#{userName}
             </if>
-        </trim>
+
     </select>
 
-    <insert id="addUser" parameterType="user">
+    <insert id="addUser" parameterType="User">
         insert into sys_user(
-            userid,username,nickname,password,salt,createDate,expiredDate,email
+            userid,username,nickname,password,salt,state,createDate,expiredDate,email
         )values (
-            #{userId},#{userName},#{nickName},#{password},#{salt},#{createDate}.#{expiredDate},#{email}
+            #{userId},#{userName},#{nickName},#{password},#{salt},#{state},#{createDate},#{expiredDate},#{email}
         )
     </insert>
 

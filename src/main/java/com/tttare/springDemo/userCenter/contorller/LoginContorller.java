@@ -28,6 +28,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -72,10 +74,9 @@ public class LoginContorller {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String toLogin(Map<String, Object> map){
+    public String toLogin(Map<String, Object> map,HttpServletRequest request){
         loginService.logout();
         String key = create16String();
-
         map.put("key",key);
         return "/user/login";
     }
@@ -194,7 +195,7 @@ public class LoginContorller {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
-        String emailCode = request.getParameter("email");
+        String emailCode = request.getParameter("emailCode");
         String emailCodeCache = redisUtil.getObject(email, String.class);
         if(StringUtils.isEmpty(emailCodeCache)){
             rp = new ResponseParam(Contant.FAIL,"验证码已过期");
@@ -209,13 +210,21 @@ public class LoginContorller {
                 user.setEmail(email);
                 user.setSalt(salt);
                 user.setState(0);
-                user.setCreateDate(new Date());
+                Date date = new Date();
+                user.setCreateDate(new Timestamp(date.getTime()));
                 // 所有用户默认只有一个月有效期
-                user.setExpiredDate(new Date(new Date().getTime()+30*24*60*60*1000));
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                calendar.add(Calendar.MONTH,1);
+                user.setExpiredDate(new Timestamp(calendar.getTime().getTime()));
                 String  encryptPwd= EncryptUtils.encrypt(password,user.getCredentialsSalt(),this.algorithmName,this.hashIterations);
                 user.setPassword(encryptPwd);
                 user.setNickName(name);
-                userService.addUser(user);
+                try{
+                    userService.addUser(user);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 rp = new ResponseParam(Contant.SUCCESS,"注册成功");
             }else{
                 rp = new ResponseParam(Contant.FAIL,"验证码已过期");

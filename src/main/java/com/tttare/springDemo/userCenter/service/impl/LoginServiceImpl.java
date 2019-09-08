@@ -128,6 +128,6 @@ public class LoginServiceImpl implements LoginService {
         }
         long times=60*5;//五分钟后过期
         redisUtil.setObject(email,code,times);
-        return new ResponseParam(Contant.SUCCESS,"邮件验证过程");
+        return new ResponseParam(Contant.SUCCESS,"邮件验证成功");
     }
 }

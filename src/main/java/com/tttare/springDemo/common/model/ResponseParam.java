@@ -1,6 +1,7 @@
 package com.tttare.springDemo.common.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * ClassName: ResponseParam <br/>
@@ -10,6 +11,7 @@ import lombok.Getter;
  * @author: tttare<br />
  * @since JDK 1.8
  */
+@Getter
 public class ResponseParam {
 
     // 响应码
