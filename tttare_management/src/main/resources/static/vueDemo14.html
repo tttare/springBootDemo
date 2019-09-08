@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="app">
+		<h3>当单选框被选择为true时,才v-bind:value的值</h3>
+		单选框绑定一个value
+		<input type="radio" v-model="picked" :value="value">
+		<p>{{picked}}</p>
+		<p>{{value}}</p>
+	</div>
+	
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+	<script>
+		
+		new Vue({
+			el:'#app',
+			data:{
+				picked:false,
+				value:"来了老弟"
+			}
+		})
+		
+	</script>
+</body>
+</html>

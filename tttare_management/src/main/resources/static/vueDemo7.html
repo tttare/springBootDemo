@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="app">
+		<!--在vue中,v-前缀即代表指令 如v-if,v-html,v-bind-->
+		<!--    v-bind动态的操作标签的属性值 -->
+		<a v-bind:href="detailUrl">百度一下</a>
+		<img v-bind:src="imgUrl" />
+		<p v-if="hide">我要成为比较厉害的程序员</p>
+		<a v-bind:style="red">我要红</a>
+		<button v-on:click="hideWord">点击隐藏</button>
+	</div>
+	
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+	<script>
+
+		var app=new Vue({
+			el:'#app',    
+			data:{
+				detailUrl:"http://www.baidu.com",
+				imgUrl:"https://www.baidu.com/img/xinshouye_77c426fce3f7fd448db185a7975efae5.png",
+				hide:true,
+				red:"color: red;"
+			},
+			methods:{
+				hideWord:function (){
+					this.hide=false;
+				}
+			}
+		})
+		
+		
+	</script>
+</body>
+</html>

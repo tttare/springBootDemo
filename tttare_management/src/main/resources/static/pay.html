@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车模块</title>
+	</head>
+	<body>
+		<h2><p class="bg-primary">商品付款页面demo练习</p></h2>
+		<div  id="app" >
+			<table  class="table table-bordered">
+				<tr>
+					<th></th>
+					<th>微信支付</th>
+					<th>支付宝支付</th>
+					<th>其他</th>
+				</tr>
+				<tr v-for="">
+					<td>{{index}}</td>
+					<td>{{phone.name}}</td>
+					<td>{{phone.price}}</td>
+				</tr>
+				
+	
+			</table>
+			<div style="margin-left: 1300px;"><p class="text-info">商品总额:{{totalPrice}}</p></div>
+			<button class="btn btn-primary" @click="addProduct()">增加产品</button>
+		</div>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+		<script>
+			var vue=new Vue({
+				el:'#app',
+				data:{
+				},computed:{
+					totalPrice:function(){
+						var len=this.phones.length;
+						var sum=0;
+						for(var i=0;i<len;i++){
+							sum+=this.phones[i].price * this.phones[i].num;
+						}
+						return sum;
+					}
+				},methods:{
+					deleteProduct:function(ind){
+						//参数说明:从index起,删除几个
+						this.phones.splice(ind,1);
+					},
+					changeNum:function(ind,str){
+						if('-'==(str)){
+							if(this.phones[ind].num <1) return;
+							this.phones[ind].num--;
+						}else if('+'==(str)){
+							this.phones[ind].num++;
+						}
+					},
+					addProduct:function(){
+						this.phones.push({
+							name:'huaweiMate20Pro',
+							price:5999,
+							num:1							
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

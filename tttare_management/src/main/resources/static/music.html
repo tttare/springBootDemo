@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>音乐播放</title>
+		<script type="text/javascript" src="/springmvc_crm/js/jquery.min.js" ></script>
+		<script type="text/javascript">
+			function playAud() {
+				document.getElementById('a1').play();
+			}
+			function pauseAud() {
+				document.getElementById('a1').pause();
+			}
+
+			function toBottom(){
+				window.scrollTo(0, document.documentElement.clientHeight);
+			}
+			
+			function toTop(){
+				window.scrollTo(0,0);
+			}
+
+			//页面加载完执行函数
+			window.onload = function(){
+				var aud1=document.getElementById('a1');//第一段音频
+				var aud2=document.getElementById('a2');//第二段音频
+				aud1.play();
+				//监听是否播放完
+				aud1.addEventListener('ended', function () {  
+					//播放完毕
+					//冻结checkbox,让父div直接无法点击
+					document.getElementById('q1').onclick=function(){
+						return false;
+					}
+					//10秒倒计时
+					setTimeout(function() {
+						//跳到第二个视频
+						window.scrollTo(0, aud2.offsetTop);
+						//aud2.offsetTop
+						//播放第二个视频
+						aud2.play();
+            			},10000)
+					}, false);
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h3>需求分析，页面加载者第一段音乐播放，音乐播放完毕，10s开始自动播放下一段音乐，并且使得第一段音乐下的checkbox无法被点击</h3>
+		<input type="button" onclick="playAud()" value="play">
+		<input type="button" onclick="pauseAud()" value="pause">
+		<input type="button" onclick="toBottom()" value="bottom">
+		
+		<h3>听力第一题</h3>
+		<audio id="a1" src="Fee - Everything Falls.mp3" autoplay="autoplay" controls="controls"></audio>
+		<div id="q1">
+			<input id="ck1" type="checkbox"  />A
+			<input type="checkbox"  />B
+			<input type="checkbox"  />C
+			<input type="checkbox"  />D
+		</div>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<h3>听力第二题</h3>
+		<audio id="a2" src="Family of the Year - Hero.mp3" controls="controls" loop="loop"></audio>
+		<div>
+			<input type="checkbox"  />A
+			<input type="checkbox"  />B
+			<input type="checkbox"  />C
+			<input type="checkbox"  />D
+		</div>
+		<h3>视频播放</h3>
+		<video src="E:\书籍\tttare\RION\OFJE-104.mp4" height="300px" width="400px" controls="controls" style="width= 100%; height=100%; object-fit: fill"></video>
+		<br />
+		<input type="button" onclick="toTop()" value="top">
+	</body>
+</html>
+

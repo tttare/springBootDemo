@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<link href="/css/test.css" />
+		<div id="app" v-cloak>
+			<h1>{{text.split(",").reverse().join()}}</h1>
+		<h5>vue中template的作用,template是html5的新标签,template天生不可见,当需要对多个子标签进行渲染(或者判断是否渲染时),会比较合适</h5>
+		<h5>v-else-if用紧跟着v-if,v-else用紧跟着v-if或v-else-if</h5>
+		<template v-if="status==1">
+			<p>第一天</p>
+			<p>第二天</p>
+			<p>第三天</p>
+		</template>
+		<h5>为了效率,vue会复用页面的一些元素,如点击如下的切换,已输入input框的文字并不会消失,证明input被复用;
+			如果不想复用,在input框内加入key属性,属性值不能重复,就可避免复用
+		</h5>
+		<template v-if="user=='name'">
+			<h4>用户名登录</h4>
+			<input type="text" placeholder="请输入" />
+			<button @click="changeInput()">点击切换为邮箱登录</button>
+		</template>
+		<template v-else>
+			<h4>邮箱登录</h4>
+			<input type="text" placeholder="请输入" />
+			<button @click="changeInput()">点击切换为用户名登录</button>
+		</template>
+		</div>
+		<div style="display: none;">看不到我</div>
+		
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+		
+		<script>
+	
+			var app=new Vue({
+				el:'#app',    
+				data:{
+					text:'ab,cd',
+					status:1,
+					user:'name'
+				},methods:{
+					changeInput:function(){
+						if(this.user=='name'){
+							this.user='';
+						}else{
+							this.user='name';
+						}
+						
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	
+	<button onclick="musicPlay()">播放</button>
+	<script src="js/voice-2.0.js"></script>
+	<script>
+		function musicPlay(){
+			var reader = new FileReader();
+	    	reader.readAsText("D:\\upload\\father.amr");
+	    	reader.onload=function(){
+	    	 	alert(reader.result)
+	    	}
+		}
+	</script>
+	</body>
+</html>
