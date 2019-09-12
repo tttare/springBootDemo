@@ -1,9 +1,9 @@
 package com.tttare.springDemo.userCenter.shiro;
 
+import com.tttare.springDemo.userCenter.service.UserService;
 import com.tttare.springDemo.model.SysPermission;
 import com.tttare.springDemo.model.SysRole;
 import com.tttare.springDemo.model.User;
-import com.tttare.springDemo.userCenter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

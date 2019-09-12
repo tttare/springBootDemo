@@ -1,6 +1,8 @@
 package com.tttare.springDemo.userCenter.contorller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.tttare.springDemo.userCenter.service.LoginService;
+import com.tttare.springDemo.userCenter.service.UserService;
 import com.tttare.springDemo.common.cache.IRedis;
 import com.tttare.springDemo.common.model.Contant;
 import com.tttare.springDemo.common.model.ResponseParam;
@@ -10,8 +12,6 @@ import com.tttare.springDemo.common.utils.EncryptUtils;
 import com.tttare.springDemo.common.utils.RandomUtils;
 import com.tttare.springDemo.model.LoginResult;
 import com.tttare.springDemo.model.User;
-import com.tttare.springDemo.userCenter.service.LoginService;
-import com.tttare.springDemo.userCenter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

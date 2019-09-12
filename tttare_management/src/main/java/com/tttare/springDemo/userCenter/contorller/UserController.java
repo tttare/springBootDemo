@@ -2,9 +2,9 @@ package com.tttare.springDemo.userCenter.contorller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.tttare.springDemo.model.FileObject;
 import com.tttare.springDemo.common.cache.IRedis;
 import com.tttare.springDemo.common.utils.FileViewUtil;
-import com.tttare.springDemo.model.FileObject;
 import com.tttare.springDemo.model.User;
 import com.tttare.springDemo.userCenter.service.UserService;
 import org.slf4j.Logger;

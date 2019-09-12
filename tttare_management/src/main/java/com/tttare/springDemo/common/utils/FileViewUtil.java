@@ -12,7 +12,7 @@ import java.util.Date;
 public class FileViewUtil {
 
     //递归查找文件及文件夹
-    public static FileObject getSubFile(File file, FileObject fo,int depth) {
+    public static FileObject getSubFile(File file, FileObject fo, int depth) {
         String size = "";
         long fileS = file.length();
         // DecimalFormat df = new DecimalFormat("#.00");
