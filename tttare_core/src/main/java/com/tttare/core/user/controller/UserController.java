@@ -1,6 +1,7 @@
 package com.tttare.core.user.controller;
 
 
+import com.tttare.api.user.UserService;
 import com.tttare.springDemo.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @since JDK 1.8
  */
 @RestController
-public class UserController{
+public class UserController implements UserService {
 
     @GetMapping("/user/{userName}")
-    public User findUserByUserName(@PathVariable("userName") String userName){
+    public User findByName(@PathVariable("userName") String userName){
         User user = new User();
         user.setUserId("11111");
         user.setUserName("tttare");

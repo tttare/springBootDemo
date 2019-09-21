@@ -1,4 +1,4 @@
-package com.tttare.portal.user;
+package com.tttare.portal.user.controller;
 
 import com.tttare.api.user.UserService;
 import com.tttare.springDemo.model.User;

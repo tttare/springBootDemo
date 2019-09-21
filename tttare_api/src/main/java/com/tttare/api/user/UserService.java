@@ -1,7 +1,7 @@
 package com.tttare.api.user;
 
-import org.springframework.cloud.netflix.feign.FeignClient;
 import com.tttare.springDemo.model.User;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author: tttare<br />
  * @since JDK 1.8
  */
-@FeignClient(value="tttare_core")
+@FeignClient(value="tttare-core")
 public interface UserService {
 
     @RequestMapping(method=RequestMethod.GET,value = "/user/{userName}")
