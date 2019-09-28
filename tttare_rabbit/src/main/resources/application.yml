@@ -1,0 +1,36 @@
+server:
+  port: 8087
+eureka:
+  client:
+    serviceUrl:
+      #defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true # 优先注册IP地址而不是hostname
+  #healthcheck:
+    #enabled: true # 启用健康检查,注意:需要引用spring boot actuator
+
+spring:
+  application:
+    name: tttare-rabbit
+  # rabbitMQ config
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: tttare
+    #publisher-confirms:当你的消息被RabbitMQ成功接收以后，提供了一个回调支持
+    publisher-confirms: true
+    publisher-returns: true
+    #在RabbitMQ中可以虚拟消息服务器VirtualHost，每个VirtualHost相当月一个相对独立的RabbitMQ服务器，
+    #每个VirtualHost之间是相互隔离的。exchange、queue、message不能互通。
+    #这里使用admin用户下的 /tttare-queue
+    virtual-host: /tttare-queue
+    listener:
+      simple:
+        acknowledge-mode: manual #设置确认模式手工确认
+        concurrency: 3 #消费者最小数量
+        max-concurrency: 10 # 消费者最大数量
+
+
+
