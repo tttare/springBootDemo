@@ -1,23 +1,21 @@
 package com.tttare.rabbit.config;
 
-/**
- * ClassName: DirectExchangeConfig <br/>
- * Description: <br/>
- * date: 2019/9/27 22:51<br/>
- *
- * @author: tttare<br />
- * @since JDK 1.8
- */
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-//direct直连模式的交换机配置,包括一个direct交换机，两个队列，三根网线binding
+/**
+ * ClassName: DirectConfig <br/>
+ * Description: <br/>
+ * date: 2019/9/30 23:14<br/>
+ *
+ * @author: tttare<br />
+ * @since JDK 1.8
+ */
 @Configuration
-public class DirectExchangeConfig {
+public class DirectConfig {
 
     @Bean
     public DirectExchange directExchange() {
@@ -55,6 +53,4 @@ public class DirectExchangeConfig {
         Binding binding = BindingBuilder.bind(directQueue2()).to(directExchange()).with("green");
         return binding;
     }
-
-
 }

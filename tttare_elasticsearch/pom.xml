@@ -9,20 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tttare_rabbit</artifactId>
-
+    <artifactId>tttare_elasticsearch</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.tttare</groupId>
             <artifactId>tttare_model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!-- rabbitmq -->
+        <!-- elasticsearch启动器 (必须)-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>

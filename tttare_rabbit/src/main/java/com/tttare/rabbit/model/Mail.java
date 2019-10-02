@@ -31,4 +31,10 @@ public class Mail implements Serializable {
         this.country = country;
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "Mail [mailId=" + mailId + ", country=" + country + ", weight="
+                + weight + "]";
+    }
 }
