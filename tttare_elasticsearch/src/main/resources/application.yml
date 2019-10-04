@@ -1,0 +1,50 @@
+server:
+  port: 8087
+eureka:
+  client:
+    serviceUrl:
+      #defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true # 优先注册IP地址而不是hostname
+  #healthcheck:
+    #enabled: true # 启用健康检查,注意:需要引用spring boot actuator
+
+spring:
+  application:
+    name: tttare-elasticsearch
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 127.0.0.1:9300
+#数据库连接
+#  datasource:
+#    name: tttare_management
+#    url: jdbc:mysql://192.168.0.184:3306/tttare_management?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+#    username: root
+#    password: 111464
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    filters: stat,slf4j
+#   maxActive: 20
+#    initialSize: 1
+#    maxWait: 60000
+#    minIdle: 1
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: select 'x'
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxPoolPreparedStatementPerConnectionSize: 20
+ #   maxOpenPreparedStatements: 20
+# es连接
+
+
+
+#==================mybaties Config Start==================
+#ORM Bean Package
+#mybatis:
+#  mapper-locations: classpath:mybatis/*.xml
+#  type-aliases-package: #com.tttare.springDemo.model
