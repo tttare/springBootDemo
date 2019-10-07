@@ -420,7 +420,7 @@
       // that we finish the rendering the first time someone actually activates
       // the menu
       if (this.options.lazyLoadLiElements === true) {
-        this.$button.one('click.dropdown.data-api', function (e) {
+        this.$button.one('click.dropdown.data-rabbitmqOps', function (e) {
           // render the menu
           that.$lis = null;
           that.liObj = {};
@@ -1461,7 +1461,7 @@
       var that = this,
           $no_results = $('<li class="no-results"></li>');
 
-      this.$button.on('click.dropdown.data-api', function () {
+      this.$button.on('click.dropdown.data-rabbitmqOps', function () {
         that.$menuInner.find('.active').removeClass('active');
         if (!!that.$searchbox.val()) {
           that.$searchbox.val('');
@@ -1474,7 +1474,7 @@
         }, 10);
       });
 
-      this.$searchbox.on('click.dropdown.data-api focus.dropdown.data-api touchend.dropdown.data-api', function (e) {
+      this.$searchbox.on('click.dropdown.data-rabbitmqOps focus.dropdown.data-rabbitmqOps touchend.dropdown.data-rabbitmqOps', function (e) {
         e.stopPropagation();
       });
 
@@ -1889,7 +1889,7 @@
 
   // SELECTPICKER DATA-API
   // =====================
-  $(window).on('load.bs.select.data-api', function () {
+  $(window).on('load.bs.select.data-rabbitmqOps', function () {
     $('.selectpicker').each(function () {
       var $selectpicker = $(this);
       Plugin.call($selectpicker, $selectpicker.data());

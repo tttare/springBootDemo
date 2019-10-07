@@ -3872,7 +3872,7 @@
 	            // Shortcut
 	            var ciphertextWords = ciphertext.words;
 
-	            // Test for salt
+	            // test for salt
 	            if (ciphertextWords[0] == 0x53616c74 && ciphertextWords[1] == 0x65645f5f) {
 	                // Extract salt
 	                var salt = WordArray.create(ciphertextWords.slice(2, 4));

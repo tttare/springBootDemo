@@ -13,7 +13,7 @@ eureka:
 
 spring:
   application:
-    name: tttare-api
+    name: tttare-rabbitmqOps
 
 #ribbon:
 #  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 通过属性更改负载均衡规则

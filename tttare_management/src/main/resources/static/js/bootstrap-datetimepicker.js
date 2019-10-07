@@ -1950,7 +1950,7 @@
    * ================== */
 
   $(document).on(
-    'focus.datetimepicker.data-api click.datetimepicker.data-api',
+    'focus.datetimepicker.data-rabbitmqOps click.datetimepicker.data-rabbitmqOps',
     '[data-provide="datetimepicker"]',
     function (e) {
       var $this = $(this);

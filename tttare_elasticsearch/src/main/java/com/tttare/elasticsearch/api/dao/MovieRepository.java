@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Description: 定义ItemRepository 接口<br/>
  * date: 2019/10/4 10:49<br/>
  * Movie:为实体类
- * String:为Movie实体类中主键的数据类
+ * String:为Movie实体类中主键的数据类型
  * @author: tttare<br />
  * @since JDK 1.8
  */

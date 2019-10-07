@@ -21,7 +21,9 @@
 		<module>tttare_core</module>
 		<module>tttare_model</module>
 		<module>tttare_eurerkaServer</module>
-	</modules>
+        <module>tttare_rabbit</module>
+        <module>tttare_elasticsearch</module>
+    </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

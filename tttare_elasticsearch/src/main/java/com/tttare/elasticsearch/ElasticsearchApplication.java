@@ -15,7 +15,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ElasticsearchApplication {
 
     public static void main(String[] args) {
-            SpringApplication.run(ElasticsearchApplication.class, args);
-        }
+        System.setProperty("es.set.netty.runtime.available.processors","false");
+        SpringApplication.run(ElasticsearchApplication.class, args);
+    }
 
 }

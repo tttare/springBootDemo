@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients(basePackages= {"com.tttare.api.user"})
+@EnableFeignClients(basePackages= {"com.tttare.rabbitmqOps.user"})
 public class PortalApplication {
 
 	public static void main(String[] args) {

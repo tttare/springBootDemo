@@ -20,34 +20,36 @@ import java.util.Date;
 @Getter
 @Setter
 @Document(indexName = "item",type = "docs", shards = 1, replicas = 0)
+//indexName:索引库名，个人建议以项目名称命名
+//type:类型，个人建议以实体类名称命名
 //shards 分片;replicas 副本
 public class Movie {
 
     @Id
     private String id;
 
-    @Field(type = FieldType.Text, analyzer = "ik_max_word")
+    @Field(type = FieldType.text, analyzer = "ik_max_word")
     private String name;
 
-    @Field(type = FieldType.Keyword)
+    @Field(type = FieldType.keyword)
     private String type;//惊悚 悬疑 喜剧 动作 科幻 动画 英语剧 舞台剧
 
-    @Field(type = FieldType.Keyword)
+    @Field(type = FieldType.keyword)
     private String director;//导演
 
-    @Field(type = FieldType.Keyword)
+    @Field(type = FieldType.keyword)
     private String actor;//代表演员
 
-    @Field(type = FieldType.Text, analyzer = "ik_max_word")
+    @Field(type = FieldType.text, analyzer = "ik_max_word")
     private String brief;//电影简述
 
-    @Field(index = false, type = FieldType.Keyword)
+    @Field(index = false, type = FieldType.keyword)
     private String filePath;
 
     @Field(index = false, type = FieldType.Integer)
     private int favCount;
 
-    @Field(index = false, type = FieldType.Keyword)
+    @Field(index = false, type = FieldType.keyword)
     private String createDate;
 
     public Movie(){
@@ -65,5 +67,11 @@ public class Movie {
         this.favCount=favCount;
         this.createDate=createDate;
     }
+
+    @Override
+    public String toString() {
+        return this.name+","+this.type+","+this.director+","+this.actor+","+this.brief+','+this.favCount+","+this.createDate;
+    }
+
 
 }
