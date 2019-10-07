@@ -6,21 +6,21 @@ rabbitMQ的消息生产者和消费者之间的通信,不仅仅是只有一个�
 
 a.**Direct exchange**，一个exchange和多个queue绑定，会根据绑定的不同routingKey，发送到不同的Queue中
 
-![](D:\学习笔记\img\directExchange.gif)
+![](img\directExchange.gif)
 
-![](D:\学习笔记\img\2019-09-28_000904.gif)
+![](img\2019-09-28_000904.gif)
 
 b**.Topic exchange**，按模式匹配路由键。模式符号 "#" 表示一个或多个单词，"*" 仅匹配一个单词。
 
-![](D:\学习笔记\img\2019-09-27_232441.gif)
+![](img\2019-09-27_232441.gif)
 
 c.**Fanout Exchange** , 不处理路由键。你只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout交换机转发消息是最快的。 
 
-![](D:\学习笔记\img\2019-09-28_000949.gif)
+![](img\2019-09-28_000949.gif)
 
 d.**RPC**（Remote Procedure Call）远程过程调用方式。实际业务中，有的时候我们还需要等待消费者返回结果给我们，或者是说我们需要消费者上的一个功能、一个方法或是一个接口返回给我们相应的值。
 
-![](D:\学习笔记\img\2019-09-27_232742.gif)
+![](img\2019-09-27_232742.gif)
 
 ## 2.rabbitMQ的参数解释
 
@@ -38,7 +38,7 @@ d.**RPC**（Remote Procedure Call）远程过程调用方式。实际业务中�
 
 ## 3.rabbitMQ结构图
 
-![](D:\学习笔记\img\2019-09-27_235918.gif)
+![](img\2019-09-27_235918.gif)
 
 ## 4.rabbitMQ安装及运行
 
@@ -59,7 +59,7 @@ cmd窗口,erl 查看erlang的查看erlang是否安装配置成功,rabbitmqctl st
 **新建virtual host**(在RabbitMQ中可以虚拟消息服务器VirtualHost，每个VirtualHost相当月一个相对独立的RabbitMQ服务器，每个VirtualHost之间是相互隔离的。exchange、queue、message不能互通。 
 在RabbitMQ中无法通过AMQP创建VirtualHost，可以通过以下命令来创建。)
 
-![](D:\学习笔记\img\2019-09-28_191401.gif)
+![](img\2019-09-28_191401.gif)
 
 ## 5.rabbitMQ的常用指令
 
@@ -121,7 +121,7 @@ spring:
 RabbitMQ是一个消息代理：它接受和转发消息。 你可以把它想象成一个邮局：当你把邮件放在邮箱里时，你可以确定邮差先生最终会把邮件发送给你的收件人。 在这个比喻中，RabbitMQ是邮政信箱，邮局和邮递员。
 RabbitMQ与邮局的主要区别是它不处理纸张，而是接受，存储和转发数据消息的二进制数据块
 
-![](D:\学习笔记\img\2019-09-29_174527.gif)
+![](img\2019-09-29_174527.gif)
 
 P（producer/ publisher）：生产者，一个发送消息的用户应用程序。
 
@@ -135,7 +135,7 @@ C（consumer）：消费者，消费和接收有类似的意思，消费者是�
 
 工作队列或者竞争消费者模式
 
-![](D:\学习笔记\img\2019-09-29_174802.gif)
+![](img\2019-09-29_174802.gif)
 
 工作队列，又称任务队列。主要思想就是避免执行资源密集型任务时，必须等待它执行完成。相反我们稍后完成任务，我们将任务封装为消息并将其发送到队列。 在后台运行的工作进程将获取任务并最终执行作业。当你运行许多工人时，任务将在他们之间共享，但是一个消息只能被一个消费者获取。
 总之：让多个消费者绑定到一个队列，共同消费队列中的消息。队列中的消息一旦消
@@ -143,7 +143,7 @@ C（consumer）：消费者，消费和接收有类似的意思，消费者是�
 
 ### 3.订阅模型（三类）
 
-![](D:\学习笔记\img\2019-09-29_175112.gif)
+![](img\2019-09-29_175112.gif)
 
 解读:
 
@@ -214,7 +214,7 @@ Topic 类型的 Exchange 与 Direct 相比，都是可以根据 RoutingKey 把�
 org.springframework.amqp.rabbit.core.RabbitTemplate rabbitTemplate;//这是amqp的消息发送核心类
 ```
 
-![1569829720225](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1569829720225.png)
+![](img\1569829720225.png)
 
 如上代码可知,虽然可以rabbitTemplate.setQueue(queue)将消息直接发送给队列,但是已经被标记为***废弃***
 
@@ -384,7 +384,7 @@ public Binding binding() {
 
 两种绑定,都能将交换器与队列绑定起来,如下管理后台截图图
 
-![](D:\学习笔记\img\2019-09-30_213410.gif)
+![](img\2019-09-30_213410.gif)
 
 **注:由于我想尝试两种绑定方式,也出了一个bug**
 
@@ -410,11 +410,102 @@ rabbitMQ很多启动失败的原因是,**同一个对象,在两处,定义参数�
 
 两个与交换器绑定的队列都收到消息,且都消费成功
 
-![](D:\学习笔记\img\2019-09-30_215207.gif)
+![](img\2019-09-30_215207.gif)
 
 ### 订阅模型-Direct(直连)
 
+定义队列和交换器
 
+``` java
+@Configuration
+public class DirectConfig {
+
+    //定义一个直连交换器
+    @Bean
+    public DirectExchange directExchange() {
+        DirectExchange directExchange = new DirectExchange("direct");
+        return directExchange;
+    }
+
+    //设置两个队列directqueue1 directqueue2
+    @Bean
+    public Queue directQueue1() {
+        Queue queue = new Queue("directqueue1");
+        return queue;
+    }
+
+    @Bean
+    public Queue directQueue2() {
+        Queue queue = new Queue("directqueue2");
+        return queue;
+    }
+
+    //3个binding将交换机和相应队列连起来,绑定不同routingKey  orange  black  green
+    @Bean
+    public Binding bindingorange() {
+        Binding binding = BindingBuilder.bind(directQueue1()).to(directExchange()).with("orange");
+        return binding;
+    }
+
+    @Bean
+    public Binding bindingblack() {
+        Binding binding = BindingBuilder.bind(directQueue2()).to(directExchange()).with("black");
+        return binding;
+    }
+
+    @Bean
+    public Binding bindinggreen() {
+        Binding binding = BindingBuilder.bind(directQueue2()).to(directExchange()).with("green");
+        return binding;
+    }
+}
+
+```
+
+发送直连消息
+
+```java
+//Direct   --- 做rabbitMQ的发送确认
+@RequestMapping("/pushDirectMail")
+@ResponseBody
+public ResponseParam pushDirectMail(@RequestBody Mail mail){
+    ResponseParam rp;
+    try{
+        //发送消息 发送五次 多个线程消费者一个队列
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+       /*param1:交换器
+        * param2:routingKey
+        * param3:消息
+        * param4:correlationData是生产者在发送数据时可以携带的相关信息，比如消息唯一属性,uuid*/
+        rabbitTemplate.convertAndSend("direct","orange",mail,correlationData);
+        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+            @Override
+            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+                if (ack) {
+                    // 处理ack
+                    System.out.println("CallBackConfirm 消息消费成功！");
+                } else {
+                    // 处理nack, 此时cause包含nack的原因。
+
+                    // 如当发送消息给一个不存在的Exchange。这种情况Broker会关闭Channel；
+
+                    // 当Broker关闭或发生网络故障时，需要重新发送消息。
+
+                    // 暂时先日志记录，包括correlationData, cause等。
+                    System.out.println("CallBackConfirm 消息消费失败！");
+                }
+            }
+        });
+
+
+        rp = new ResponseParam("000000","success");
+    }catch (Exception e){
+        log.error(e.getMessage());
+        rp = new ResponseParam("000001","fail");
+    }
+    return rp;
+}
+```
 
 
 
@@ -423,4 +514,149 @@ rabbitMQ很多启动失败的原因是,**同一个对象,在两处,定义参数�
 
 
 ## 9.消息发送和消息消费健壮性处理
+
+### 一致性解决
+
+```
+消息加入状态值,并存入数据库,跟踪消息的流程
+status;//0 待消费 1 已消费 2 发送失败 3 消费失败
+```
+
+### 幂等性解决
+
+```
+根据mailId查询是否有已有被消费的mail,如有,不能重复消费
+```
+
+关于 一致性及幂函数的博客:https://mp.weixin.qq.com/s/GAlvB7ClkaR0NXhK09jwAg
+
+### 消息中间件健壮性demo
+
+**公有发布者**,对消息备份及消息是否正常发布到rabbitMQ服务器备份
+
+``` java
+package com.tttare.rabbit.rabbitmqOps.publisher;
+
+import com.tttare.rabbit.model.Mail;
+import com.tttare.rabbit.model.MailLogger;
+import com.tttare.rabbit.rabbitmqOps.repository.MailLoggerRepository;
+import com.tttare.rabbit.rabbitmqOps.repository.MailRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/**
+ * ClassName: PublisherWithCallBack <br/>
+ * Description: <br/>
+ * date: 2019/9/30 23:36<br/>
+ *
+ * @author: tttare<br />
+ * @since JDK 1.8
+ */
+@Slf4j
+@Component
+public class SteadyPublisher implements RabbitTemplate.ConfirmCallback {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private MailRepository mailRepository;//备份消息,防止因为rabbitMq宕机,使得发送的消息丢失
+
+    @Autowired
+    private MailLoggerRepository mailLoggerRepository;//记录mail发送失败的原因及时刻
+
+    public void sendCallback(String routingKey, Mail mail, CorrelationData correlationData) {
+        //备份消息 status为 0
+        mail.setStatus("0");
+        mailRepository.save(mail);
+        rabbitTemplate.setConfirmCallback(this);
+
+        log.info("CallBackSender  UUID: " + correlationData.getId());
+
+        this.rabbitTemplate.convertAndSend(routingKey , mail , correlationData);
+    }
+
+    // 监控消息是否到达exchange
+    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+        log.info("CallBackConfirm UUID: " + correlationData.getId());
+
+        if(!ack) {
+            //TODO
+            //消息发送失败
+            //根据 mailId 将status设置为 2 消息发布失败
+        }
+
+        if(cause!=null) {
+            System.out.println("CallBackConfirm Cause: " + cause);
+            //TODO 加入一张log表 将correlationData.getId() 及 cause 存入 log表中
+            mailLoggerRepository.save(new MailLogger(correlationData.getId(),cause));
+        }
+    }
+
+
+}
+
+```
+
+**消费者**:保持消费失败的消息,并防止消息的重复消费
+
+``` java
+@RabbitListener(queues = "directqueue1")
+public void process1(Mail mail, Channel channel, @Header(name = "amqp_deliveryTag") long deliveryTag, @Header("amqp_redelivered") boolean redelivered, @Headers Map<String, String> head) {
+    try {
+        //根据mailId查询是否有已有被消费的mail,如有,不能重复消费
+        //----新消息   处理业务逻辑-----
+
+        Thread.sleep(1000);
+        log.info("------receive,消费者一,队列的orange: " + mail.toString());
+        log.info("------header:"+head);
+        //  根据mailId将status改为 1 已消费
+        //----已处理的消息  直接将消息ack------
+        channel.basicAck(deliveryTag,true);
+        channel.close();
+    } catch (Exception e) {
+        log.error("consume confirm error!", e);
+        //这一步千万不要忘记，不会会导致消息未确认，消息到达连接的qos之后便不能再接收新消息
+        //一般重试肯定的有次数，这里简单的根据是否已经重发过来来决定重发。第二个参数表示是否重新分发
+        /**
+             * params:deliveryTag:该消息的index
+             * params:requeue：被拒绝的是否重新入队列  redelivered为true时,认为消息应该直接从  			 * rabbitMQ中丢弃,放入数据库,等待再次被消费
+             * */
+        channel.basicReject(deliveryTag, !redelivered);//相当于一条消息,最多重试消费两次
+        //TODO
+        //  根据mailId将status改为 3 消费失败
+
+        //  可以将异常  存入logger库 标注为 消费时异常
+
+        // 最后 设置定时任务  每晚 将是失败的mail 重新发送 状态为 2 3的消息
+    }
+}
+```
+
+消息发布类
+
+``` java
+@Controller("/steady")
+public class SteadyMailController extends SteadyPublisher {
+
+    @RequestMapping("/pushDirectMail")
+    @ResponseBody
+    public ResponseParam pushDirectMail(@RequestBody Mail mail){
+        CorrelationData correlationData = new CorrelationData(mail.getMailId());
+        /* param1:交换器
+         * param2:routingKey
+         * param3:消息
+         * param4:correlationData是生产者在发送数据时可以携带的相关信息，比如消息唯一属性,uuid*/
+        try{
+            sendCallback("orange",mail,correlationData);
+            return new ResponseParam("000000","success");
+        }catch (Exception e){
+            return new ResponseParam("000001",e.getMessage(),"fail");
+        }
+    }
+}
+```
 
