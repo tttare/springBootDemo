@@ -31,6 +31,14 @@ spring:
         acknowledge-mode: manual #设置确认模式手工确认
         concurrency: 3 #消费者最小数量
         max-concurrency: 10 # 消费者最大数量
-
-
+  datasource:
+    url: jdbc:mysql://192.168.0.184:3306/tttare_management?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    username: root
+    password: 111464
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 

@@ -21,6 +21,7 @@ public class Mail implements Serializable {
     private String mailId;
     private String country;
     private Double weight;
+    private String status;//0 待消费 1 已消费 2 发送失败 3 消费失败
 
 
     public Mail() {

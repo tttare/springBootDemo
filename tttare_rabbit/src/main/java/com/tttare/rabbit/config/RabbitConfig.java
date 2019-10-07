@@ -17,6 +17,7 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 /**
  * ClassName: RabbitConfig <br/>
@@ -78,6 +79,9 @@ public class RabbitConfig {
     }
 
     @Bean
+    @Scope("prototype")
+    //only one ConfirmCallback is supported by each RabbitTemplate
+    //单例的RabbitTemplate会报如上异常,需要设置多例
     public RabbitTemplate rabbitTemplate() {
         return new RabbitTemplate(connectionFactory());
     }

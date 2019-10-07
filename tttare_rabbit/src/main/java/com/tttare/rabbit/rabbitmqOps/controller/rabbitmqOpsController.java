@@ -55,8 +55,12 @@ public class rabbitmqOpsController {
     public ResponseParam pushDirectMail(@RequestBody Mail mail){
         ResponseParam rp;
         try{
-            //发送消息
-            CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+            //发送消息 发送五次 多个线程消费者一个队列
+            CorrelationData correlationData = new CorrelationData(mail.getMailId());
+            /*param1:交换器
+            * param2:routingKey
+            * param3:消息
+            * param4:correlationData是生产者在发送数据时可以携带的相关信息，比如消息唯一属性,uuid*/
             rabbitTemplate.convertAndSend("direct","orange",mail,correlationData);
             rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
                 @Override
@@ -76,6 +80,7 @@ public class rabbitmqOpsController {
                     }
                 }
             });
+
 
             rp = new ResponseParam("000000","success");
         }catch (Exception e){
