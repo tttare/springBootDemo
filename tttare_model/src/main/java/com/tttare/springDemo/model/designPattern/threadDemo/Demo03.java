@@ -117,14 +117,14 @@ public class Demo03 {
         Thread a = new Thread(new Runnable() {
             @Override
             public void run() {
-                sysc1.method05();
+                sysc1.method02();
             }
         });
 
         Thread b = new Thread(new Runnable() {
             @Override
             public void run() {
-                sysc1.method06();
+                sysc2.method07();
             }
         });
         a.start();
@@ -136,8 +136,8 @@ public class Demo03 {
         //test01();
         //test02();
         //test03();
-        test04();
-        //test05();
+        //test04();
+        test05();
     }
 
     //  *************************************************
@@ -155,10 +155,10 @@ public class Demo03 {
     //   很明显,内存中的钥匙始终只有一把,无论new多少个对象,钥匙也只会有一把
     //   即使多个线程方别访问多个对象的同步代码块,也得争抢一把钥匙,出现现象二
 
-    //   synchronized(非固定对象),每个线程进入代码块前,都获得了一个新的钥匙,固synchronized失效
+    //   synchronized(非固定对象),每个线程进入代码块前,都获得了一个新的钥匙,故synchronized失效
 
     //   多个synchronized代码块之间的阻塞,多个synchronized代码块,
     //   如果用的同一个钥匙,同一时间,也只能有一个线程进入代码块
     //   synchronized方法与synchronized方法(this)一样,会形成阻塞
-
+    //   synchronized==synchronized(this).他俩都是用this对象做的锁
 }

@@ -70,7 +70,9 @@ type:text与keyword都是表示字符串,text要分词,keyword不分词
 
 ## es分布式原理
 
+Elasticsearch 也是会对数据进行切分，同时每一个分片会保存多个副本，其原因和 HDFS 是一样的，都是为了保证分布式环境下的高可用。
 
+![](D:\springDemo\doc\img\2019-10-10_091409.gif)
 
 ## es整合springboot
 
@@ -443,7 +445,9 @@ Bool查询对应Lucene中的BooleanQuery，它由一个或者多个子句组成�
 
 ##### filter
 
-返回的文档必须满足filter子句的条件。但是不会像Must一样，参与计算分值
+返回的文档必须满足filter子句的条件。但是不会像Must一样，参与计算分值(如下图,虽然有结果,但是max_score为0)
+
+![](img\2019-10-08_115359.gif)
 
 ##### should
 
@@ -466,7 +470,7 @@ public void testboolQuery2(){
     //比较时间
     //QueryBuilder queryBuilder3=QueryBuilders.rangeQuery("publishDate").gt("2018-01-01");
     queryBuilder.withQuery(QueryBuilders.boolQuery().should(queryBuilder1)
-                           .should(queryBuilder2).should(queryBuilder3).should(queryBuilder4).should(queryBuilder5).minimumShouldMatch(2));
+                         .should(queryBuilder2).should(queryBuilder3).should(queryBuilder4).should(queryBuilder5).minimumShouldMatch(2));
     //minimumShouldMatch为 1 时,有查询结果
     //minimumShouldMatch为 2 时,无查询结果
     //分页查询
@@ -476,16 +480,143 @@ public void testboolQuery2(){
 }
 ```
 
-### fuzzyQuery
+#### fuzzyQuery
+
+#### wildcardQuery
+
+通配符查询,较为简单,还是以"轮到你了"这个字段做例子
+
+``` json
+{
+    "query": {
+        "match": {
+            "name": "轮"
+        }
+    }
+}
+// match,term 查询都没有结果,因为索引库并没有分"轮"作为索引
+{
+    "query": {
+        "wildcard": {
+            "name": "轮*"
+        }
+    }
+}
+// wildcard查询,能查到结果;“*”表示0到多个字符，而使用“？”表示一个字符就行了
+```
+
+#### regexQuery
 
 
 
-### wildcardQuery
-
-
-
-### regexQuery
+#### 结果排序
 
 
 
 ## es分值计算
+
+//TODO 算法还是比较复杂的 后续学习
+
+**Elasticsearch 默认是按照文档与查询的相关度(匹配度)的得分倒序返回结果的. 得分 (_score) 就越大, 表示相关性越高.**
+
+**查看查询条件的相似度_score**,请求路径如下
+
+http://localhost:9200/item/docs/_search?explain&format=json,
+
+//TODO
+
+## 分词优化
+
+
+
+## mysql数据导入es库
+
+一：安装logstash
+进入到opt文件夹打开终端 执行以下命令
+wget -c https://artifacts.elastic.co/downloads/logstash/logstash-6.4.0.zip  
+加上-c支持断点续传
+二：解压logstash
+unzip logstash-6.4.0.zip
+三：进入到logstash bin目录
+cd logstash-6.4.0/bin
+四：安装logstash-jdbc
+./logstash-plugin install logstash-input-jdbc
+五：编写配置文件（jdbc.sql和jdbc.conf，建议在bin目录下vim jdbc.conf)
+六：首先在bin目录下新建一个mysql目录,里面包含jdbc.conf,jdbc.sql文件,加入mysql的驱动
+jdbc.conf内容：
+
+``` 
+input {
+    stdin {
+    }
+    jdbc {
+      # 连接的数据库地址和哪一个数据库，指定编码格式，禁用SSL协议，设定自动重连
+      jdbc_connection_string => "jdbc:mysql://数据库地址:端口号/数据库名?characterEncoding=UTF-8&useSSL=false&autoReconnect=true"
+      # 你的账户密码
+      jdbc_user => "账号"
+      jdbc_password => "密码"
+      # 连接数据库的驱动包，建议使用绝对地址
+      jdbc_driver_library => "mysql/mysql-connector-java-5.1.45-bin.jar"
+      # 这是不用动就好
+      jdbc_driver_class => "com.mysql.jdbc.Driver"
+      jdbc_paging_enabled => "true"
+      jdbc_page_size => "50000"
+ 
+      #处理中文乱码问题
+      codec => plain { charset => "UTF-8"}
+ 
+      #使用其它字段追踪，而不是用时间
+      use_column_value => true
+      #追踪的字段      
+      tracking_column => testid      
+      record_last_run => true     
+      #上一个sql_last_value值的存放文件路径, 必须要在文件中指定字段的初始值     
+      last_run_metadata_path => "mysql/station_parameter.txt"
+ 
+      jdbc_default_timezone => "Asia/Shanghai"
+ 
+      statement_filepath => "mysql/jdbc.sql"
+      
+ 
+      #是否清除 last_run_metadata_path 的记录,如果为真那么每次都相当于从头开始查询所有的数据库记录
+      clean_run => false
+ 
+      # 这是控制定时的，重复执行导入任务的时间间隔，第一位是分钟
+      schedule => "*/5 * * * *"
+      type => "jdbc"
+    }
+}
+ 
+ 
+filter {
+    json {
+        source => "message"
+        remove_field => ["message"]
+    }
+}
+ 
+ 
+output {
+    elasticsearch {
+        # 要导入到的Elasticsearch所在的主机
+        hosts => "192.168.105.180:9200"
+        # 要导入到的Elasticsearch的索引的名称
+        index => "db_anytest"
+        # 类型名称（类似数据库表名）
+        document_type => "table_anytest"
+        # 主键名称（类似数据库主键）
+        document_id => "%{testid}"
+        # es 账号
+        user => elastic
+        password => changeme
+        
+    }
+ 
+    stdout {
+        # JSON格式输出
+        codec => json_lines
+    }   
+}
+```
+
+jdbc.sql里面就直接写sql语句就行了

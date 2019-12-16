@@ -1,10 +1,12 @@
 package com.tttare.springDemo.userCenter.shiro;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tttare.springDemo.userCenter.service.UserService;
 import com.tttare.springDemo.model.SysPermission;
 import com.tttare.springDemo.model.SysRole;
 import com.tttare.springDemo.model.User;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,7 +14,9 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -63,12 +67,22 @@ public class MyShiroRealm extends AuthorizingRealm {
         if(user == null){
             return null;
         }
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                user, //这里传入的是user对象，比对的是用户名，直接传入用户名也没错，但是在授权部分就需要自己重新从数据库里取权限
-                user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
-                getName()  //realm name
-        );
+        SimpleAuthenticationInfo authenticationInfo;
+        try{
+            authenticationInfo = new SimpleAuthenticationInfo(
+                    user, //这里传入的是user对象，比对的是用户名，直接传入用户名也没错，但是在授权部分就需要自己重新从数据库里取权限
+                    user.getPassword(), //密码
+                    ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
+                    getName()  //realm name
+            );
+            //登录成功,将用户信息存入Session
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            session.setAttribute("userName", userName);
+            session.setAttribute("user",user);
+        }catch(AuthenticationException e){
+            throw e;
+        }
         return authenticationInfo;
     }
 }
