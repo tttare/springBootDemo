@@ -63,7 +63,7 @@ public class LoginContorller {
     private String algorithmName = "md5";
     private int hashIterations = 2;
     //密码盐
-    private String salt = "8d78869f470951332959580424d4bf4f";
+    //private String salt = "8d78869f470951332959580424d4bf4f";
 
 
     private long verifyTTL = 60;//验证码过期时间60秒
@@ -77,8 +77,7 @@ public class LoginContorller {
     public String toLogin(Map<String, Object> map,HttpServletRequest request){
         loginService.logout();
         String key = create16String();
-        map.put("key",key);
-        return "/user/login";
+        return "/user/login?key="+key;
     }
 
     /**
@@ -208,8 +207,8 @@ public class LoginContorller {
                 user.setUserId(CommonUtil.getUUID());
                 user.setUserName(userName);
                 user.setEmail(email);
-                user.setSalt(salt);
-                user.setState(0);
+                user.setSalt(create16String());
+                user.setState("0");
                 Date date = new Date();
                 user.setCreateDate(new Timestamp(date.getTime()));
                 // 所有用户默认只有一个月有效期

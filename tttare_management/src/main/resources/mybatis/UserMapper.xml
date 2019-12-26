@@ -26,6 +26,10 @@
         select * from sys_user where username=#{userName}
     </select>
 
+    <update id="lastLoginDate" parameterType="string">
+        update sys_user set lastlogindate = SYSDATE() where userid = #{userId}
+    </update>
+
     <select id="countByCondition"  resultType="int"  parameterType="map">
         select count(*) from sys_user where 1=1
             <if test="email != null">
@@ -39,9 +43,9 @@
 
     <insert id="addUser" parameterType="User">
         insert into sys_user(
-            userid,username,nickname,password,salt,state,createDate,expiredDate,email
+            userid,username,nickname,password,salt,state,createDate,updateDate,lastlogindate,expiredDate,email
         )values (
-            #{userId},#{userName},#{nickName},#{password},#{salt},#{state},#{createDate},#{expiredDate},#{email}
+            #{userId},#{userName},#{nickName},#{password},#{salt},#{state},SYSDATE(),SYSDATE(),SYSDATE(),#{expiredDate},#{email}
         )
     </insert>
 

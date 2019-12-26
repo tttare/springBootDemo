@@ -7,7 +7,7 @@
 <body>
 	<div id="app">
 		<input type="text" v-model="name" placeholder="请输入">
-		<a style="color:red;">{{name}}</a>
+		<button @click="handleSubmit">登录</button>
 	</div>
 	
 	<script type="text/javascript" src="js/vue.js" ></script>
@@ -18,6 +18,12 @@
 			el:'#app',
 			data:{
 				name:'older'
+			},
+			methods : {
+                handleSubmit() {
+                    alert("登录!");
+                    alert(this.name);
+                }
 			}
 		})
 		

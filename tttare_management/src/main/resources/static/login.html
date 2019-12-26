@@ -4,173 +4,13 @@
 		<meta charset="UTF-8">
 		<title>login</title>
 	</head>
-	<style>
-		body{
-			
-		}
-		.head{
-			padding: 22px 0;
-    		*height: 30px;
-    		height: 10%;
-		}
-		.main{
-			background-image: url(img/img001.jpg);
-    		background-repeat: no-repeat;
-			background-size: 100% 100%;
-			width: 100%;
-			position: absolute;
-			*height: 600px;
-			height: 80%;
-			left: 0;
-		    background-size: cover;
-		    background-repeat: no-repeat;
-		    background-position: center center;
-		}
-		.footer{
-		    margin: 60px auto 0;
-		    padding: 7px 0 9px;
-		    height: 10%;
-		    width: 1200px;
-		}
-		.login-form{
-			margin: 120px 1100px;
-			position: relative;
-		    z-index: 4;
-		    background: #fff;
-		    overflow: visible;
-		    width: 346px;
-		    border-radius: 5px;
-			
-		}
-		.form .item .login-label {
-		    position: absolute;
-		    z-index: 3;
-		    top: 0;
-		    left: 0;
-		    width: 38px;
-		    height: 38px;
-		    border-right: 1px solid #bdbdbd;
-		    background: url(https://misc.360buyimg.com/user/passport/1.0.0/widget/login-form-2018-0827/i/pwd-icons-new.png) no-repeat;
-		}
-		
-		.form .itxt {
-		    line-height: 18px;
-		    height: 18px;
-		    border: 0;
-		    padding: 10px 0 10px 50px;
-		    width: 254px;
-		    float: none;
-		    overflow: hidden;
-		    font-size: 14px;
-		    font-family: '\5b8b\4f53';
-		}
-		
-		label {
-		    cursor: default;
-		}
-		.form .item {
-		    position: relative;
-		    margin-bottom: 20px;
-		    z-index: 1;
-		}
-		.form .item-fore1, .form .item-fore2 {
-		    border: 1px solid #bdbdbd;
-		    height: 38px;
-		    width: 304px;
-		}
-		
-		.form .item .pwd-label {
-		    background-position: -48px 0;
-		}
-		
-		.login-form .msg-wrap {
-		    min-height: 23px;
-		    margin-top: 55px;
-		    margin-bottom: 5px;
-		    height: auto!important;
-		}
-		.login-form .login-box {
-			display: block;
-    		visibility: visible;
-		    width: 306px;
-		    padding: 20px;
-		    *visibility: hidden;
-		}
-		.login-form .msg-error {
-		    position: relative;
-		    background: #ffebeb;
-		    color: #e4393c;
-		    border: 1px solid #faccc6;
-		    padding: 3px 10px 3px 40px;
-		    line-height: 15px;
-		    height: auto;
-		}
-		.hide {
-		    display: none;
-		}
-		.login-form .login-tab {
-		    height: 54px;
-		    font-size: 18px;
-		    font-family: "microsoft yahei";
-		    text-align: center;
-		    border-bottom: 1px solid #f4f4f4;
-		    position: absolute;
-		    background: #fff;
-		    display: block;
-		}
-		.login-form .login-tab-l, .login-form .login-tab-r {
-		    width: 173px;
-		    margin-top: 30px;
-		}
-		.login-form .login-tab-r {
-    		right: 0;
-		}
-		.login-form .login-tab a.checked, .login-form .login-tab a:hover {
-		    font-weight: 700;
-		    color: #ff9903;
-		}
-		.login-form .login-tab a {
-			color:black;
-		    width: 99%;
-		    height: 18px;
-		    *position: absolute;
-		    left: 0;
-		    top: 18px;
-		    border-right: 1px solid #f4f4f4;
-		    text-decoration: none;
-		}
-		.login-form .login-box .mc {
-		    overflow: visible;
-		    zoom: 1;
-		}
-		
-		.loginBtn{
-			background: black;
-			background-image: url(img/logoBtn.png);
-			background-position: center center;
-    		background-size: cover; 
-			border: 1px solid #333;
-			margin: 40px 88px;
-			border-radius: 10px;
-			width: 120px;
-    		height: 55px;
-    		cursor: pointer;
-		}
-		
-		.logo{
-			background-image: url(img/logo.png);
-			background-position: center center;
-    		background-size: cover;
-    		width: 160px;
-    		height: 60px;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/tttare-login.css" />
 	<body>
 		<div class="head">
 			<div class="logo"></div>
 		</div>
 		<div class="main">
-			<div class="login-form">
+			<div class="login-form" id="app">
 				<div class="login-box">
 					<div></div>
 					<div class="login-tab login-tab-l">
@@ -179,23 +19,26 @@
                 	<div class="login-tab login-tab-r">
                     	<a href="javascript:void(0)" clstag="pageclick|keycount|login_pc_201804112|10" class="" style="outline: rgb(109, 109, 109) none 0px;">注册</a>
                 	</div>
-                	<div class="msg-wrap">
-	                    <div class="msg-error"><b>密码错误</b></div>
+                	<div class="msg-wrap" v-html="msg">
 	                </div>
 	                <div class="mc">
 						<div class="form">
 							<div class="item item-fore1">
 		                        <label for="loginname" class="login-label name-label"></label>
-		                        <input id="loginname" type="text" class="itxt" name="loginname" tabindex="1" autocomplete="off" value="" placeholder="邮箱/用户名/已验证手机">
+		                        <input id="loginname" type="text"  v-model="username" class="itxt" name="loginname" tabindex="1" autocomplete="off" value="" placeholder="邮箱/用户名/已验证手机">
 		                        <span class="clear-btn"></span>
+								<a style="color : red" v-text="usernameMsg"></a>
 		                    </div>
 							<div id="entry" class="item item-fore2" style="visibility: visible;">
 			                    <label class="login-label pwd-label" for="nloginpwd"></label>
-			                    <input type="password" id="nloginpwd" name="nloginpwd" class="itxt itxt-error" tabindex="2" autocomplete="off" placeholder="密码">
+			                    <input id="nloginpwd" type="password" v-model="password" name="nloginpwd" class="itxt itxt-error" tabindex="2" autocomplete="off" placeholder="密码">
 			                    <span class="clear-btn"></span>
+								<a style="color : red" v-text="passwordMsg"></a>
 			                    <span class="capslock" style="display: none;"><b></b>大小写锁定已打开</span>
 		                	</div>
-		                	<div class="loginBtn"></div>
+		                	<div>
+								<button @click="handleSubmit" class="loginBtn"/>
+							</div>
 						</div>	                	
 	                </div>
 				</div>
@@ -203,5 +46,79 @@
 			</div>
 		</div>
 		<div class="footer"></div>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/axios.min.js" ></script>
+		<script type="text/javascript" src="js/crypto-js.js" ></script>
+		<script>
+            new Vue({
+                el:'#app',
+                data : {
+					username: "",
+					password: "",
+                    msg: "",
+                    usernameMsg: "",
+                    passwordMsg: "",
+					key:  window.location.search.substring(window.location.search.indexOf("=")+1)
+                },
+				methods:{
+                    handleSubmit() {
+						if(this.username.trim().length==0){
+                           this.usernameMsg = "用户名不能为空";
+                           return;
+						}
+                        if(this.username.trim().length>=32){
+                            this.usernameMsg = "用户名过长";
+                            return;
+                        }
+                        if(this.password.trim().length==0){
+                            this.passwordMsg = "密码不能为空";
+                            return;
+                        }
+                        if(this.password.trim().length>=32){
+                            this.passwordMsg = "密码过长";
+                            this.password = '';
+                            return;
+                        }
+						//ajax请求
+                        this.post("/user/login",{
+                            username : this.username.trim(),
+                            password : this.password.trim()
+						});
+
+					},
+					post  : function(url,obj){
+                        axios({
+                            method: 'post',
+                            url: '/user/login',
+                            data: {
+                                username: this.username,
+                                password: this.encryptPassword(this.key,this.password),
+								key: this.key
+                            }
+                        }).then((res)=>{
+                            //var last=obj.toJSONString();
+							// 将JSON对象转化为JSON字符
+							//var obj = str.parseJSON();
+							// 由JSON字符串转换为JSON对象
+                            res = res.parseJSON();
+							if(res.code == '000001'){
+                                this.msg = '登录失败';
+                                this.msg = '<div class="msg-error"><b>'+this.msg+'</b></div>';
+							}
+                        });
+					},
+					//密码加密
+					encryptPassword :function ($key,$password) {
+                        var key = CryptoJS.enc.Utf8.parse($key);
+                        console.log("key:" + key + ",$key:" + $key);
+                        var password = CryptoJS.enc.Utf8.parse($password);
+                        var encrypted = CryptoJS.AES.encrypt(password, key, {mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7});
+                        var encryptedPwd = encrypted.toString();
+                        return encryptedPwd;
+                    }
+				}
+            })
+
+		</script>
 	</body>
 </html>
