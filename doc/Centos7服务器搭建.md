@@ -152,6 +152,18 @@ ip addr  或者  ifconfig
 防火墙随系统开启启动  ： systemctl enable firewalld.service
 ```
 
+## 局域网内其他主机访问这台虚拟机上应用
+
+这片博文非常详细
+
+https://blog.csdn.net/hehyyoulan/article/details/85250819
+
+```
+虚拟机的网络连接方式大致是三种，（1）桥接模式，在这种模式下，虚拟机相当于与所在物理机同一IP段的独立计算机，与局域网内的其他计算机是没有区别的；（2）NAT模式，这种模式下，虚拟机与所在的物理机单独组成了一个新的局域网，他们共享接入物理机的IP段；（3）host—only模式，在这种模式下物理机下所属的所有虚拟机共同组成一个局域网，他们与物理机之间是断开的，也就是说物理机和虚拟机之间是无法访问的。
+
+如果局域网想要访问虚拟机的服务怎么办呢？这时候基本上有两种思路，一种是将虚拟机的网络连接设置成桥接模式，因为这时候虚拟机相当于所在物理机同一IP段的独立计算机，这时候其他的局域网内的计算机当然可以访问虚拟机内的服务，一般在虚拟机的设置里面找到网络设置，将其设置为桥接模式，借助虚拟机的IP就可以实现访问，但是这么做访问速度会非常慢。另外一种比较好的方式就是将虚拟机的网络连接设置成NAT模式，注意，直接这么设置局域网内的其他计算机是无法访问虚拟机中的服务的，因为局域网内的其他计算机相对于虚拟机和物理机新组的局域网来说属于外网，这时候还需要在物理机中对其进行端口映射，这个与局域网中利用路由器对其中某个IP端口进行映射的原理是一样的，通过这种也可以实现局域网访问虚拟机内的服务。（来源http://blog.csdn.net/jiangdianqin/article/details/50365988）
+```
+
 
 
 ## 服务器环境搭建
@@ -323,7 +335,8 @@ make install
 启动redis
 
 ```
-redis-server ../etc/redis/conf    //指定配置文件启动
+cd /home/tttare/redis/bin
+redis-server ../etc/redis.conf    //指定配置文件启动
 ```
 
 ### mongoDB安装
@@ -447,6 +460,7 @@ chmod +x mongodb.sh
 - 验证脚本
 
 ```
+cd /home/tttare/mongoDB/mongodb-install/bin
 sh mongodb.sh start
 sh mongodb.sh stop
 sh mongodb.sh restart
