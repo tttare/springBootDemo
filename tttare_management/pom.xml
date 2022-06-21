@@ -17,7 +17,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<!--java连接mysql的依赖,需匹配本地mysql的版本-->
-			<version>5.1.6</version>
+			<version>8.0.28</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
